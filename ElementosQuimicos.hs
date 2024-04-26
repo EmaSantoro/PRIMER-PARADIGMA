@@ -26,6 +26,6 @@ data Sustancia = Sustancia {
     tipoS :: TipoSustancia
 } deriving (Show)
 
-
+--prueba commit
 
 --a las sencillas les corresponde
