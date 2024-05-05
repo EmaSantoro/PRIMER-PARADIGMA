@@ -22,9 +22,13 @@ data Elemento = Fuego | Psiquico | Acero deriving (Show, Eq)
 
 data TipoPokemon = Unico Elemento | Doble Elemento Elemento deriving (Show)
 
+-- Obtiene el elemento primario de un TipoPokemon
+primario :: TipoPokemon -> Elemento
 primario (Unico elemento) = elemento
 primario (Doble elemento1 _) = elemento1
 
+-- Obtiene el elemento secundario de un TipoPokemon
+secundario :: TipoPokemon -> Elemento
 secundario (Doble _ elemento2) = elemento2
 
 
