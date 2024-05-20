@@ -46,3 +46,26 @@ cuandoHizoMasLlamadas llamadas
     |length(snd (llamadas !! 0)) > length(snd (llamadas !! 1)) = fst (llamadas !! 0)
     |length(snd (llamadas !! 0)) < length(snd (llamadas !! 1)) = fst (llamadas !! 1)
     |otherwise = "Iguales"
+
+--ORDEN SUPERIOR
+--1) Definir la función existsAny/2, que dadas una función booleana y una tupla de tres elementos devuelve True si existe algún elemento de la tupla que haga verdadera la función. 
+existsAny :: (a -> Bool) -> (a, a, a) -> Bool
+existsAny f (x, y, z) = f x || f y || f z
+
+--2) Definir la función mejor/3, que recibe dos funciones y un número, y devuelve el resultado de la función que dé un valor más alto
+mejor :: (Int -> Int) -> (Int -> Int) -> Int -> Int
+mejor f1 f2 numero
+    |f1 numero > f2 numero = f1 numero
+    |f1 numero < f2 numero = f2 numero
+    |otherwise = f1 numero --son iguales
+
+--3) Definir la función aplicarPar/2, que recibe una función y un par, y devuelve el par que resulta de aplicar la función a los elementos del par.
+aplicarPar :: (Int -> b) -> (Int,Int) -> (b,b)
+aplicarPar funcion (x,y)
+    |x == y = (funcion x, funcion y)
+    |otherwise = (funcion x, funcion y)
+
+--Ejercicios Extras
+--1) Definir la función esMultiploDeAlguno/2, que recibe un número y una lista y devuelve True si el número es múltiplo de alguno de los números de la lista. 
+esMultiploDeAlguno :: Int -> [Int] -> Bool
+esMultiploDeAlguno numero lista = any (\x -> mod numero x == 0) lista
