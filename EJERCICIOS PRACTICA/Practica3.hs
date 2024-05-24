@@ -170,4 +170,38 @@ primerosDivisores numero lista = takeWhile (esDivisor numero) lista
 primerosNoDivisores :: Int -> [Int] -> [Int]
 primerosNoDivisores numero lista = takeWhile (not.esDivisor numero) lista
 
---16) 
+--16) Se representa la información sobre ingresos y egresos de una persona en cada mes de un año mediante dos listas, de 12 elementos cada una
+--a) huboMesMejorDe/3, que dadas las listas de ingresos y egresos y un número, devuelve True si el resultado de algún mes es mayor que el número.
+huboMesMejorDe :: [Int] -> [Int] -> Int -> Bool
+huboMesMejorDe listaIngresos listaEgresos numero = any (> numero) (listaPromedio listaIngresos listaEgresos)
+
+listaPromedio :: [Int] -> [Int] -> [Int]
+listaPromedio listaIngresos listaEgresos = zipWith (-) listaIngresos listaEgresos --zipWith resta los elementos de las listas 
+
+
+--17)En una población, se estudió que el crecimiento anual de la altura de las personas sigue esta fórmula de acuerdo a la edad
+--   De 1 a 9 años: 2 cm por año, de 10 a 15 4 cm total, 16 y 17 2cm, 18 y 18 1cm, 20 o mas 0cm
+
+--a) Definir la función crecimientoAnual/1,que recibe como parámetro la edad de la persona, y devuelve cuánto tiene que crecer en un año.
+crecimientoAnual :: Int -> Int
+crecimientoAnual edad = formulaCrecimiento edad
+
+formulaCrecimiento :: Int -> Int
+formulaCrecimiento edad
+    | 1 <= edad && edad <= 9 = 24 - (edad * 2)
+    | 10 <= edad && edad <= 15 = 4
+    | edad == 16 || edad == 17 = 2
+    | edad == 18 || edad == 19 = 1
+    | otherwise = 0
+
+--b) Definir la función crecimientoEntreEdades/2, que recibe como parámetros dos edades y devuelve cuánto tiene que crecer una persona entre esas dos edades.
+crecimientoEntreEdades :: Int -> Int -> Int
+crecimientoEntreEdades edad1 edad2 = sum (map crecimientoAnual [edad1..(edad2-1)])
+
+--c) Definir alturasEnUnAnio/2, que dada una edad y una lista de alturas de personas, devuelva la altura de esas personas un año después.
+alturasEnUnAnio :: Int -> [Int] -> [Int]
+alturasEnUnAnio edad listaAlturas = map (+ (formulaCrecimiento edad)) listaAlturas
+
+
+
+
