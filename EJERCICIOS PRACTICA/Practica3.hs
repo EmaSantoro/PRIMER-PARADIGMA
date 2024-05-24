@@ -202,6 +202,25 @@ crecimientoEntreEdades edad1 edad2 = sum (map crecimientoAnual [edad1..(edad2-1)
 alturasEnUnAnio :: Int -> [Int] -> [Int]
 alturasEnUnAnio edad listaAlturas = map (+ (formulaCrecimiento edad)) listaAlturas
 
+--d) Definir alturaEnEdades/3, recibe altura y la edad de una persona y una lista de edades, y devuelve la lista de la altura que va a tener esa persona en cada una de las edades
+alturaEnEdades :: Int -> Int -> [Int] -> [Int]
+alturaEnEdades altura edad listaEdades = map (+ altura) (map (crecimientoEntreEdades edad) listaEdades)
+
+--18)Se tiene información de las lluvias en un determinado mes
+--a) Definir la función rachasLluvia/1, que devuelve una lista de las listas de los días seguidos que llovió
+--rachasLluvia :: [Int] -> [[Int]]
+--rachasLluvia lista = 
 
 
+--19) Definir una función que sume una lista de números. Resolverlo utilizando foldl/foldr. 
+sumaListaFold :: [Int] -> Int
+sumaListaFold lista = foldl (+) 0 lista
 
+--20) Definir una función que resuelva la productoria de una lista de números. Resolverlo utilizando foldl/foldr. 
+prodListaFold :: [Int] -> Int
+prodListaFold lista = foldl (*) 1 lista
+
+--21) Definir la función dispersion, que recibe una lista de números y devuelve la dispersión de los valores, o sea máximo - mínimo. Probar de utilizar foldr. 
+dispersion :: [Int] -> Int
+dispersion lista = foldl1 max lista - foldl1 min lista
+--foldl1 toma el primer elemento de la lista como acumulador
